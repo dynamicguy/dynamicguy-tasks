@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Built-By: ferdous
+Build-Jdk: 1.6.0_31
+Created-By: Maven Integration for Eclipse
+Dependencies: org.w3c.css.sac,net.sourceforge.cssparser,com.google.gua
+ va,org.slf4j
+
