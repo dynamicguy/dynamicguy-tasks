@@ -25,12 +25,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @XmlRootElement
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "members", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Member implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
+	@Column(name = "MEMBER_ID")
 	private Long id;
 
 	@NotNull
@@ -49,44 +50,12 @@ public class Member implements Serializable {
 	@Column(name = "phone_number")
 	private String phoneNumber;
 
-	private Set<Role> memberRoles;
+	public Member() {
 
-	public boolean hasRole(String roleName) {
-		Set<Role> myRoles = getMemberRoles();
-		for (Role next : myRoles) {
-			if (next.getName().equals(roleName)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
-	public void removeRole(Role role) {
-		getMemberRoles().remove(role);
-		role.getRoleMembers().remove(this);
-	}
-
-	public void addRole(Role role) {
-		getMemberRoles().add(role);
-		role.getRoleMembers().add(this);
-	}
-
-	@Transient
-	public Role[] getRoles() {
-		return (Role[]) getMemberRoles().toArray(new Role[0]);
-	}
-
-	@ManyToMany(targetEntity = Role.class, cascade = {
-			CascadeType.PERSIST, CascadeType.MERGE })
-	protected Set<Role> getMemberRoles() {
-		if (memberRoles == null) {
-			memberRoles = new HashSet<Role>();
-		}
-		return memberRoles;
-	}
-
-	protected void setMemberRoles(Set<Role> memberRoles) {
-		this.memberRoles = memberRoles;
+	public Member(String name) {
+		this.name = name;
 	}
 
 	public Long getId() {

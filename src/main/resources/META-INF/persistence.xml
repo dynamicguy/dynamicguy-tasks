@@ -5,7 +5,9 @@
         http://java.sun.com/xml/ns/persistence
         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
    <persistence-unit name="primary">
+   	<!-- <provider>memory</provider> -->
       <jta-data-source>java:jboss/datasources/DynamicguyTasksDS</jta-data-source>
+      <class>com.dynamicguy.tasks.model.Member</class>
       <properties>
          <property name="hibernate.hbm2ddl.auto" value="create-drop" />
          <property name="hibernate.show_sql" value="false" />

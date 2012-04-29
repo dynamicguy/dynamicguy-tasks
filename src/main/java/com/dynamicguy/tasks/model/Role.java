@@ -5,10 +5,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -24,13 +26,14 @@ import javax.inject.Inject;
 
 @Entity
 @XmlRootElement
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+@Table(name = "roles", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Role implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
+	@Column(name = "ROLE_ID")
 	private Long id;
 
 	@NotNull
@@ -38,9 +41,23 @@ public class Role implements Serializable {
 	@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
 	private String name;
 
-	private Set<Member> roleMembers;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "members_roles", joinColumns = { @JoinColumn(name = "ROLE_ID") }, inverseJoinColumns = { @JoinColumn(name = "MEMBER_ID") })
+	private Set<Member> roleMembers = new HashSet<Member>(0);
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "memberRoles", targetEntity = Member.class)
+	public Role() {
+
+	}
+
+	public Role(String name) {
+		this.name = name;
+	}
+
+	public Role(String name, Set<Member> roleMembers) {
+		this.name = name;
+		this.roleMembers = roleMembers;
+	}
+
 	public Set<Member> getRoleMembers() {
 		if (roleMembers == null) {
 			roleMembers = new HashSet<Member>();

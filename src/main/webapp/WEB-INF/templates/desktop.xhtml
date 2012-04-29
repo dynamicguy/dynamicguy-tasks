@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Dynamic Guy - Tasks</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<h:outputStylesheet name="main.css" library="css" />
+	<h:outputStylesheet name="v1.css" library="css" />
+</h:head>
+<h:body>
+	<div class="header">
+		<div class="header_area">
+			<div class="logo">
+				<a href="index.html"><img
+					src="#{request.contextPath}/resources/gfx/logo.png"
+					alt="DocXchange" width="189" height="58" /></a>
+			</div>
+			<div class="inner_header_right">
+				<div class="inner_top_links">
+					<a href="#">Help</a> <a href="#">Support</a> <a href="#"
+						style="padding-right: 0px;">Feedback</a>
+				</div>
+				<div class="inner_header_search_area">
+					<div class="inner_welcome">
+						Welcome, Username | <a href="#">Logout</a>
+					</div>
+					<div class="inner_header_input_area">
+						<div class="hea_input_area">
+							<input name="textfield" type="text" class="input_search_bg"
+								id="textfield" />
+						</div>
+						<div class="btn_input_search">
+							<img
+								src="#{request.contextPath}/resources/gfx/btn_input_search.png"
+								alt="Search" width="22" height="27" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="inner_content_space">
+		<div class="inner_content_wrapper">
+			<div class="inner_content_border">
+				<div class="inner_content_workspace" style="margin-bottom: 200px;">
+					<div class="inner_tabs_area">
+						<div id="content">
+							<ui:insert name="content">
+				               [Template content will be inserted here]
+				            </ui:insert>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="home_content_bottom"></div>
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="footer_area">
+			<div class="footer_left">All Rights reserved by DocXchange ©
+				2012.</div>
+			<div class="footer_right">
+				<a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>
