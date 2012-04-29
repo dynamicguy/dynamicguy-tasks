@@ -7,6 +7,7 @@
    <persistence-unit name="primary">
    	<!-- <provider>memory</provider> -->
       <jta-data-source>java:jboss/datasources/DynamicguyTasksDS</jta-data-source>
+      <class>com.dynamicguy.tasks.model.Role</class>
       <class>com.dynamicguy.tasks.model.Member</class>
       <properties>
          <property name="hibernate.hbm2ddl.auto" value="create-drop" />
